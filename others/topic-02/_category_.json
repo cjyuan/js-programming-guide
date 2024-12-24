@@ -1,0 +1,8 @@
+{
+  "label": "Topic 2",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "To cover misc. topics."
+  }
+}

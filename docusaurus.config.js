@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'JavaScript Programming Guide',
+  tagline: 'A guide for new programmers',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -38,38 +38,35 @@ const config = {
 
   presets: [
     [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            //'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-            "https://github.com/cjyuan/js-programming-guide",
-        },
-/*        
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
-*/        
+      '@docusaurus/preset-classic',
+      {
+        docs: false,
+        blog: false,
         theme: {
-          customCss: './src/css/custom.css',
-        },
-      }),
+          customCss: ['./src/css/custom.css'],
+        },        
+      },
+    ] 
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs', 
+      {
+        id: 'js',
+        routeBasePath: 'js',
+        path: 'js',
+        sidebarPath: require.resolve('./sidebars.js'),        
+      }
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'others',
+        routeBasePath: 'others',
+        path: 'others',
+        sidebarPath: require.resolve('./sidebars.js'),      
+      }
     ],
   ],
 
@@ -79,23 +76,31 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'JavaScript Programming Guide',
+        title: 'Programming Guide',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Site Logo',
+          src: 'img/logo.jpg',
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            //type: 'docSidebar',
+            //sidebarId: 'tutorialSidebar',
+            to: '/js/intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'JavaScript',
+            activeBaseRegex: `/js/`,            
           },
-          /*
-          {to: '/blog', label: 'Blog', position: 'left'},
-          */
+/*
+// Hiding this from public until it has useful contents
           {
-            href: '"https://github.com/cjyuan/js-programming-guide',
+            to: '/others/intro', 
+            label: 'Other Docs', 
+            position: 'left',
+            activeBaseRegex: `/others/`,            
+          },
+*/
+          {
+            href: 'https://github.com/cjyuan/js-programming-guide',
             label: 'GitHub',
             position: 'right',
           },
@@ -103,48 +108,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `This work is licensed under CC BY-NC 4.0. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
